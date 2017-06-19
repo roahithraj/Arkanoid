@@ -23,6 +23,10 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Brick.h"
+#include "FrameTimer.h"
+#include "Colors.h"
+#include "Ball.h"
 
 class Game
 {
@@ -42,8 +46,16 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	Brick brk;
+	static constexpr float brickwidth = 60.0f;
+	static constexpr float brickheight = 30.0f;
+	static constexpr int rows = 4;
+	static constexpr int cols = 10;
+	static constexpr int nbricks = rows * cols;
+	Brick brick[nbricks];
+	const Color cls[4] = { Colors::Red, Colors::Green, Colors::Blue, Colors::White };
+	FrameTimer ft;
+	Ball b;
+	Vec2 topleft = { 100.0f, 50.0f };
 	/********************************/
 };
-
-//test;
-//test2;

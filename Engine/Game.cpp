@@ -24,9 +24,25 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	b(Vec2(300.0f, 300.0f), Vec2(300.0f, 300.0f))
 {
+	int i = 0;
+	for (int y = 0; y < rows; y++) 
+	{
+		const Color c = cls[y];
+			for (int x = 0; x < cols; x++) 
+			{
+				brick[i] = RectF(topleft.x + float(x)*brickwidth, topleft.y + float(y)*brickheight, brickwidth, brickheight, c);
+				i++;
+			}
+	}
+
 }
+
+
+
+
 
 void Game::Go()
 {
@@ -38,8 +54,17 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float dt = ft.Mark();
+	b.Update(dt);
+	b.WallCollision();
+
 }
 
 void Game::ComposeFrame()
 {
+	for (Brick& b : brick)
+	{
+		b.Draw(gfx);
+	}
+	b.Draw(gfx);
 }
