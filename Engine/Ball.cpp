@@ -15,6 +15,7 @@ void Ball::Draw(Graphics& gfx) {
 
 void Ball::Update(float dt) {
 	pos += vel*dt;
+	WallCollision();
 }
 
 void Ball::WallCollision() {

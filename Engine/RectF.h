@@ -7,13 +7,13 @@ class RectF
 {
 public:
 	float left, top, right, bottom;
-	Color c;
-public:
+	public:
 	RectF() = default;
-	RectF(float leftin, float topin, float rightin, float bottomin, Color cin);
+	RectF(float leftin, float topin, float rightin, float bottomin);
 	//RectF(float leftin, float topin, float rightin, float bottomin);
-	//RectF(Vec2& topleft, Vec2& bottomright);
-	//RectF(Vec2& topleft, float width, float height);
+	RectF(Vec2& topleft, Vec2& bottomright);
+	RectF(Vec2& topleft, float width, float height);
 
+	bool isOverlapping(const RectF& other) const;
 };
 
