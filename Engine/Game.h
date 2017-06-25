@@ -52,7 +52,6 @@ private:
 	static constexpr int rows = 4;
 	static constexpr int cols = 10;
 	static constexpr int nbricks = rows * cols;
-	Brick brock;
 	Brick bricks[nbricks];
 	const Color cls[4] = { Colors::Red, Colors::Green, Colors::Blue, Colors::White };
 	FrameTimer ft;

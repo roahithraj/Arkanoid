@@ -26,8 +26,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	b(Vec2(100.0f, 10.0f), Vec2(300.0f, 300.0f)),
-	brock(RectF(350.0f, 300.0f, 350.0f + brickwidth, 300.0f + brickheight),Colors::Blue)
+	b(Vec2(100.0f, 10.0f), Vec2(300.0f, 300.0f))
 {
 	int i = 0;
 	for (int y = 0; y < rows; y++) 
@@ -35,7 +34,8 @@ Game::Game( MainWindow& wnd )
 		const Color c = cls[y];
 			for (int x = 0; x < cols; x++) 
 			{
-				Brick newb = Brick(RectF(topleft + Vec2(float(x)*brickwidth, float(y)*brickheight), brickwidth, brickheight), c);
+				Vec2 newvec = topleft + Vec2(x*brickwidth, y*brickheight);
+				RectF newrect = RectF(topleft + Vec2(float(x)*brickwidth, float(y)*brickheight), brickwidth, brickheight);
 				bricks[i] = Brick(RectF(topleft + Vec2(float(x)*brickwidth, float(y)*brickheight), brickwidth, brickheight), c);
 				i++;
 			}
@@ -67,9 +67,7 @@ void Game::UpdateModel()
 			//brk.destroyed = true;
 		}
 	}
-	if (brock.DoBallCollision(b)) {
-		b.ReboundY();
-	}
+
 }
 
 
@@ -77,7 +75,6 @@ void Game::ComposeFrame()
 {
 
 	b.Draw(gfx);
-	brock.Draw(gfx);
 	for (Brick& brk : bricks)
 	{
 			brk.Draw(gfx);
