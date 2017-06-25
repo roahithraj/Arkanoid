@@ -26,7 +26,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	b(Vec2(100.0f, 10.0f), Vec2(300.0f, 300.0f))
+	b(Vec2(300.0f, 300.0f), Vec2(300.0f, 300.0f))
 {
 	int i = 0;
 	for (int y = 0; y < rows; y++) 
@@ -60,10 +60,15 @@ void Game::UpdateModel()
 
 	for (Brick& brk : bricks)
 	{
-		if (brk.DoBallCollision(b)) {
-			b.ReboundY();
-			brk.destroyed = true;
+		if (!brk.destroyed) {
+			if (brk.DoBallCollision(b)) {
+				b.ReboundY();
+				b.SoundPlay(false, true);
+				brk.destroyed = true;
+				break;
+			}
 		}
+		
 	}
 
 }
@@ -75,6 +80,8 @@ void Game::ComposeFrame()
 	b.Draw(gfx);
 	for (Brick& brk : bricks)
 	{
-		brk.Draw(gfx);
+		if (!brk.destroyed) {
+			brk.Draw(gfx);
+		}
 	}
 }

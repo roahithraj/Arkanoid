@@ -1,11 +1,12 @@
 #include "Ball.h"
 
-
-
 Ball::Ball(Vec2& posin, Vec2& velin)
 	:
 	pos(posin),
-	vel(velin)
+	vel(velin),
+	radius(7.0f),
+	brickhit(L"Sounds\\arkbrick.wav"),
+	paddlehit(L"Sounds\\arkpad.wav")
 {
 }
 
@@ -25,19 +26,27 @@ void Ball::WallCollision() {
 	if (ballrect.top < 0) {
 		pos.y = radius + 1;
 		ReboundY();
+		SoundPlay(true, false);
+
 	}
 	else if (ballrect.bottom >= Graphics::ScreenHeight) {
 		pos.y = Graphics::ScreenHeight - radius - 1;
 		ReboundY();
+		SoundPlay(true, false);
+
 	}
 
 	if (ballrect.left < 0) {
 		pos.x = radius + 1;
 		ReboundX();
+		SoundPlay(true, false);
+
 	}
 	else if (ballrect.right > Graphics::ScreenWidth) {
 		pos.x = Graphics::ScreenWidth - radius - 1;
 		ReboundX();
+		SoundPlay(true, false);
+
 	}
 }
 
@@ -58,4 +67,9 @@ RectF Ball::GetRect() const {
 	temprect.bottom = pos.y + radius;
 	temprect.top = pos.y - radius;
 	return temprect;
+}
+
+void Ball::SoundPlay(bool bpaddlehit, bool bbrickhit) {
+
+	bpaddlehit ? paddlehit.Play() : brickhit.Play();
 }
