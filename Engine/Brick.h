@@ -9,7 +9,7 @@ class Brick
 public:
 	RectF brickrect;
 	Color c;
-	//bool destroyed = false;
+	bool destroyed = false;
 public:
 	Brick() = default;
 	Brick(RectF& brickin, const Color cin);

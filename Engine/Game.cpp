@@ -34,8 +34,6 @@ Game::Game( MainWindow& wnd )
 		const Color c = cls[y];
 			for (int x = 0; x < cols; x++) 
 			{
-				Vec2 newvec = topleft + Vec2(x*brickwidth, y*brickheight);
-				RectF newrect = RectF(topleft + Vec2(float(x)*brickwidth, float(y)*brickheight), brickwidth, brickheight);
 				bricks[i] = Brick(RectF(topleft + Vec2(float(x)*brickwidth, float(y)*brickheight), brickwidth, brickheight), c);
 				i++;
 			}
@@ -64,7 +62,7 @@ void Game::UpdateModel()
 	{
 		if (brk.DoBallCollision(b)) {
 			b.ReboundY();
-			//brk.destroyed = true;
+			brk.destroyed = true;
 		}
 	}
 
@@ -77,6 +75,6 @@ void Game::ComposeFrame()
 	b.Draw(gfx);
 	for (Brick& brk : bricks)
 	{
-			brk.Draw(gfx);
+		brk.Draw(gfx);
 	}
 }
