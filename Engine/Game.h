@@ -51,7 +51,7 @@ private:
 	Paddle pad;
 	static constexpr float brickwidth = 60.0f;
 	static constexpr float brickheight = 30.0f;
-	static constexpr int rows = 4;
+	static constexpr int rows = 10;
 	static constexpr int cols = 10;
 	static constexpr int nbricks = rows * cols;
 	Brick bricks[nbricks];

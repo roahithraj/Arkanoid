@@ -19,5 +19,7 @@ public:
 	void Update(const Keyboard& kbd, float dt);
 	RectF GetRect();
 	void WallConfines();
+	static constexpr float wingwidth = 20.0f;
+	Color wingcolor = Colors::Magenta;
 };
 

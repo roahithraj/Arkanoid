@@ -2,7 +2,7 @@
 
 Paddle::Paddle()
 	:
-	c(Colors::Red),
+	c(Colors::Blue),
 	dimen(100.0f,20.0f),
 	pos(370.0f,550.0f),
 	paddlerect(pos, pos + dimen), 
@@ -18,13 +18,13 @@ bool Paddle::isColliding(Ball& ballin) const {
 
 void Paddle::Draw(Graphics& gfx)  {
 
-	RectF newrect;
-	newrect.left = GetRect().left + 20;
-	newrect.right = GetRect().right - 20;
-	newrect.top = GetRect().top - 1.0f;
-	newrect.bottom = GetRect().bottom + 1.0f;
-	gfx.DrawRect(GetRect(), c);
-	gfx.DrawRect(newrect, Colors::White);
+	RectF newrect = GetRect();
+	gfx.DrawRect(newrect, wingcolor);
+	newrect.left += wingwidth;
+	newrect.right -= wingwidth;
+	/*newrect.top = GetRect().top - 1.0f;
+	newrect.bottom = GetRect().bottom + 1.0f;*/
+	gfx.DrawRect(newrect,c);
 }
 
 void Paddle::Update(const Keyboard& kbd, float dt) {
