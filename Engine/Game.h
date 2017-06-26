@@ -27,6 +27,7 @@
 #include "FrameTimer.h"
 #include "Colors.h"
 #include "Ball.h"
+#include "Paddle.h"
 
 class Game
 {
@@ -47,6 +48,7 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Ball b;
+	Paddle pad;
 	static constexpr float brickwidth = 60.0f;
 	static constexpr float brickheight = 30.0f;
 	static constexpr int rows = 4;
@@ -56,5 +58,6 @@ private:
 	const Color cls[4] = { Colors::Red, Colors::Green, Colors::Blue, Colors::White };
 	FrameTimer ft;
 	Vec2 topleft = { 100.0f, 50.0f };
+	float padvelocity = 1.0f;
 	/********************************/
 };

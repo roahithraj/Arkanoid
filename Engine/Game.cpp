@@ -22,11 +22,12 @@
 #include "Game.h"
 
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd ),
-	b(Vec2(300.0f, 300.0f), Vec2(300.0f, 300.0f))
+	wnd(wnd),
+	gfx(wnd),
+	b(Vec2(300.0f, 300.0f), Vec2(300.0f, 300.0f)),
+	pad(padvelocity)
 {
 	int i = 0;
 	for (int y = 0; y < rows; y++) 
@@ -56,6 +57,7 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	const float dt = ft.Mark();
+
 	b.Update(dt);
 
 	for (Brick& brk : bricks)
@@ -71,6 +73,13 @@ void Game::UpdateModel()
 		
 	}
 
+	if (pad.isColliding(b)) {
+		b.ReboundY();
+		b.SoundPlay(true, false);
+	}
+
+
+
 }
 
 
@@ -84,4 +93,5 @@ void Game::ComposeFrame()
 			brk.Draw(gfx);
 		}
 	}
+	pad.Draw(gfx);
 }
