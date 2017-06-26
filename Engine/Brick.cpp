@@ -6,13 +6,14 @@
 Brick::Brick(RectF& rect, const Color cin)
 	:
 	brickrect(rect),
-	c(cin)
+	c(cin),
+	destroyed(false)
 {
 }
 
-void Brick::Draw(Graphics & gfx) const
-{
-		gfx.DrawRect(brickrect, c);
+void Brick::Draw(Graphics & gfx) const {
+	
+		gfx.DrawRect(brickrect.GetExpanded(-padding), c);
 }
 
 bool Brick::DoBallCollision(Ball& ball) {
