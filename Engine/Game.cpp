@@ -67,28 +67,36 @@ void Game::UpdateModel()
 		if (!brk.destroyed) {
 			if (brk.DoBallCollision(b)) {
 				b.ReboundY();
-				b.SoundPlay(false, true);
+				//b.SoundPlay(false, true);
 				brk.destroyed = true;
 				break;
 			}
 		}
+	}
+
+	if (b.vel.y > 0.0f && pad.isColliding(b)) {
+		if (b.GetRect().left < pad.GetRect().left) {
+			b.ReboundX();
+			//b.SoundPlay(true, false);
+		}
+
+		else if (b.GetRect().right > pad.GetRect().right) {
+			b.ReboundX();
+			//b.SoundPlay(true, false);
+		}
+		else {
+				b.ReboundY();
+				//b.SoundPlay(true, false);
+			}
+		}
+	else {
 		
 	}
-
-	if (pad.isColliding(b)) {
-		b.ReboundY();
-		b.SoundPlay(true, false);
-	}
-
-
-
 }
 
 
 void Game::ComposeFrame()
 {
-	pad.Draw(gfx);
-
 	b.Draw(gfx);
 	for (Brick& brk : bricks)
 	{
@@ -96,5 +104,5 @@ void Game::ComposeFrame()
 			brk.Draw(gfx);
 		}
 	}
-
+	pad.Draw(gfx);
 }
