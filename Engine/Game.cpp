@@ -26,8 +26,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	b(Vec2(300.0f, 300.0f), Vec2(300.0f, 300.0f)),
-	pad(padvelocity)
+	b(Vec2(300.0f, 300.0f), Vec2(300.0f, 300.0f))
 {
 	int i = 0;
 	for (int y = 0; y < rows; y++) 
@@ -58,7 +57,10 @@ void Game::UpdateModel()
 {
 	const float dt = ft.Mark();
 
+
 	b.Update(dt);
+
+	pad.Update(wnd.kbd, dt);
 
 	for (Brick& brk : bricks)
 	{
@@ -85,6 +87,7 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	pad.Draw(gfx);
 
 	b.Draw(gfx);
 	for (Brick& brk : bricks)
@@ -93,5 +96,5 @@ void Game::ComposeFrame()
 			brk.Draw(gfx);
 		}
 	}
-	pad.Draw(gfx);
+
 }
