@@ -23,6 +23,7 @@ public:
 	void ReboundY();
 	void ReboundX();
 	void SoundPlay(bool paddlehit, bool brickhit);
+	void speedUp(float factor);
 
 
 };

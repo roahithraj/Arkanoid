@@ -58,5 +58,6 @@ private:
 	const Color cls[4] = { Colors::Red, Colors::Green, Colors::Blue, Colors::White };
 	FrameTimer ft;
 	Vec2 topleft = { 100.0f, 50.0f };
+	float speedincrease = 0.025f;
 	/********************************/
 };

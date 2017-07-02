@@ -21,5 +21,6 @@ public:
 	void WallConfines();
 	static constexpr float wingwidth = 20.0f;
 	Color wingcolor = Colors::Magenta;
+	void padSpeedUp(float factor);
 };
 

@@ -26,7 +26,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	b(Vec2(400.0f, 450.0f), Vec2(300.0f, 300.0f))
+	b(Vec2(400.0f, 450.0f), Vec2(150.0f, 150.0f))
 {
 	int i = 0;
 	for (int y = 0; y < rows; y++) 
@@ -60,7 +60,7 @@ void Game::UpdateModel()
 	}
 	const float dt = ft.Mark();
 	b.Update(dt);
-
+	
 	pad.Update(wnd.kbd, dt);
 
 	for (Brick& brk : bricks)
@@ -69,11 +69,15 @@ void Game::UpdateModel()
 			if (brk.DoBallCollision(b)) {
 				if (b.GetRect().left < brk.brickrect.left) {
 					b.ReboundX();
+					b.speedUp(speedincrease);
+					pad.padSpeedUp(speedincrease);
 					brk.destroyed = true;
 					break;
 				}
 				else if (b.GetRect().right > brk.brickrect.right) {
 					b.ReboundX();
+					b.speedUp(speedincrease);
+					pad.padSpeedUp(speedincrease);
 					brk.destroyed = true;
 					break;
 				}
@@ -81,6 +85,8 @@ void Game::UpdateModel()
 					b.ReboundY();
 					//b.SoundPlay(false, true);
 					brk.destroyed = true;
+					b.speedUp(speedincrease);
+					pad.padSpeedUp(speedincrease);
 					break;
 				}
 

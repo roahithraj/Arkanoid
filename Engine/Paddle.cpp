@@ -55,3 +55,8 @@ void Paddle::WallConfines() {
 		pos.x = Graphics::ScreenWidth - dimen.x -1;
 	}
 }
+
+void Paddle::padSpeedUp(float factor) {
+	float mfactor = 1.0f + factor;
+	vel = vel*mfactor;
+}

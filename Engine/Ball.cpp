@@ -73,3 +73,9 @@ void Ball::SoundPlay(bool bpaddlehit, bool bbrickhit) {
 
 	bpaddlehit ? paddlehit.Play() : brickhit.Play();
 }
+
+void Ball::speedUp(float factor) {
+	float mfactor = 1.0f + factor;
+	vel.x = vel.x*mfactor;
+	vel.y = vel.y*mfactor;
+}
